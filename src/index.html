@@ -1,22 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" href="styles.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>PakePlus App</title>
-        <script type="module" src="/main.js" defer></script>
-    </head>
+<html lang="zh-hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我能提供的服务</title>
+<!-- 引入外部CSS文件 -->
+<link rel="stylesheet" href="styles.css">
+<title>服务介绍</title>
+</head>
+<body>
+  <!-- 遮罩层 - 用于图片显示时的背景遮罩 -->
+  <div class="overlay"></div>
+  
+  <!-- 图片容器 - 用于显示放大的图片 -->
+  <div class="image-container">
+    <!-- 图片将被JavaScript动态插入到这里 -->
+  </div>
+  
+  <!-- 赞赏按钮 -->
+  <button id="appreciateButton" class="button imageButton">
+    赞赏我
+    <img src="Sample lmage.jpg" alt="赞赏二维码" style="display: none;">
+  </button>
+  
+  <!-- 微信二维码按钮 -->
+  <button id="weixinButton" class="button imageButton">
+    微信二维码
+    <img src="Weixin.jpg" alt="微信二维码" style="display: none;">
+  </button>
+  
+  <!-- QQ号复制按钮 -->
+  <button id="copyButton" class="button" onclick="copyToClipboard('2127920388')">
+    点击复制我的QQ号
+  </button>
+  
+  <!-- 服务标题 -->
+  <h3>最好能带着需求来和价格咨询</h3>
+  
+  <!-- 修改服务按钮容器部分 -->
+  <div class="services-layout">
+    <!-- 左侧主要服务按钮容器 -->
+    <div class="button-container main-services">
+      <div class="button" style="--order: 1">视频/图片超分
+        <div class="button-info">AI算法超分 1080p/4k/皆可.体价格咨询添加联系方式咨询</div>
+      </div>
+      <div class="button">远程小米设备刷root
+        <div class="button-info">未升级7月版本的OS系统皆可</div>
+      </div>
+      <div class="button">批量文档修改
+        <div class="button-info">批量修改Word、Excel等文档批量修改字体格式 文章不修改原文错字纠正 1000字/1r</div>
+      </div>
+      <div class="button">远程修复基带nv损坏
+        <div class="button-info">小米oppo等机型皆可70r起.注：永久修复需要邮寄拆机 临时修复仅可使用单个ISM卡不影响日常使用</div>
+      </div>
+      <div class="button">文件打包/下载压缩 
+        <div class="button-info">提供高性能服务 列如下载大型文件并快速7z-9极限压缩</div>
+      </div>
+      <div class="button">网页css样式优化
+        <div class="button-info">定制css样式优化，可视频预览，价格实惠</div>
+      </div>
+      <div class="button">游戏代肝/护航
+        <div class="button-info">和平/生死狙击/我的世界.等，价格联系谈</div>
+      </div>
+      <div class="button">我的世界存档版本转换
+        <div class="button-info">基岩/java版本转换，100MB以下1.5r/个.100MB以上2r以上每50MB/+0.5r</div>
+      </div>
 
-    <body>
-        <main class="container">
-            <h1>Welcome to PakePlus</h1>
+    </div>
 
-            <form class="row" id="greet-form">
-                <input id="greet-input" placeholder="Enter a name..." />
-                <button type="submit">Greet</button>
-            </form>
-            <p id="greet-msg"></p>
-        </main>
-    </body>
+    <!-- 右侧附加服务按钮容器 -->
+    <div class="button-container side-services">
+      <div class="button">其他服务
+        <div class="button-info">更多服务请联系咨询</div>
+      </div>
+      <div class="button">技术支持
+        <div class="button-info">提供技术咨询和远程协助</div>
+      </div>
+      <div class="button">定制服务
+        <div class="button-info">可根据需求定制专属服务</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 引入JavaScript文件 -->
+  <script src="script.js"></script>
+</body>
 </html>
