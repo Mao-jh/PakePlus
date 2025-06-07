@@ -1,112 +1,583 @@
-.logo.vanilla:hover {
-    filter: drop-shadow(0 0 2em #ffe21c);
-}
-:root {
-    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 400;
-
-    color: #0f0f0f;
-    background-color: #f6f6f6;
-
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
+/* styles.css */
+/* 基础样式设置 */
+body {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: rgba(255, 255, 255, 0.95);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  position: relative;
+  overflow-x: hidden;
 }
 
-.container {
-    margin: 0;
-    padding-top: 10vh;
-    display: flex;
+/* 添加背景动态效果 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(80, 80, 80, 0.1), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(60, 60, 60, 0.1), transparent 40%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 布局容器 */
+.services-layout {
+  display: flex;
+  gap: 15px;
+  margin: 15px 0;
+  align-items: stretch;
+  min-height: 350px;
+  justify-content: center;
+}
+
+/* 主要服务容器 */
+.main-services {
+  flex: 2;
+  min-width: 250px;
+  max-width: 600px;
+}
+
+/* 侧边服务容器 */
+.side-services {
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 按钮容器通用样式 */
+.button-container {
+  background: rgba(40, 40, 40, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(70, 70, 70, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(80, 80, 80, 0.1);
+  padding: 25px;
+  transition: all 0.3s ease;
+}
+
+/* 按钮基础样式 */
+.button {
+  background: rgba(50, 50, 50, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(80, 80, 80, 0.3);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(80, 80, 80, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #ffffff;
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+  margin: 6px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  min-width: 150px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  font-size: 14px;
+}
+
+/* 主服务按钮样式 */
+.main-services .button {
+  justify-content: flex-start;
+}
+
+/* 侧边按钮样式 */
+.side-services .button {
+  justify-content: center;
+  height: calc((100% - 32px) / 3);
+}
+
+/* 按钮悬停效果 */
+.button:hover {
+  background: rgba(60, 60, 60, 0.95);
+  transform: translateY(-2px) translateZ(5px);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(90, 90, 90, 0.2);
+}
+
+/* 修改信息提示框样式 */
+.button-info {
+  display: none;
+}
+
+/* 添加提示箭头 */
+.main-services .button-info::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: rgba(40, 44, 52, 0.95);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.side-services .button-info::before {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: rgba(40, 44, 52, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .button-info {
+    position: fixed;
+    left: 50% !important;
+    right: auto !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .button-info::before {
+    display: none;
+  }
+
+  /* 移动端遮罩 */
+  .button:hover::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+}
+
+/* 移除之前的transform和transition */
+.main-services .button:hover .button-info,
+.side-services .button:hover .button-info {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 添加按钮悬停指示器 */
+.button {
+  overflow: hidden;
+}
+
+.button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.button:hover::after {
+  transform: translateX(100%);
+}
+
+/* 响应式布局中的信息提示框调整 */
+@media (max-width: 768px) {
+  .button-info {
+    position: absolute;
+    left: 0 !important;
+    right: 0 !important;
+    top: 100% !important;
+    width: 100%;
+    transform: none !important;
+    margin-top: 5px;
+  }
+}
+
+/* 添加按钮点击波纹效果 */
+.button {
+  position: relative;
+  overflow: hidden;
+}
+
+.button .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 优化按钮内容布局 */
+.button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+}
+
+/* 添加按钮图标占位 */
+.button::before {
+  content: '›';
+  font-size: 18px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  transform: translateX(-10px);
+}
+
+.button:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 图片容器样式 */
+.image-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(45, 45, 45, 0.97);
+  border: 1px solid rgba(80, 80, 80, 0.3);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(80, 80, 80, 0.1);
+  z-index: 9999;
+  display: none;
+  max-width: 80vw;
+  max-height: 80vh;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-container.active {
+  display: block;
+  animation: fadeInScale 0.3s ease-out;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: calc(80vh - 40px);
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
+
+/* 遮罩层样式 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 标题样式 */
+h3 {
+  color: rgba(255, 255, 255, 0.95);
+  margin: 25px 0;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(80, 80, 80, 0.3);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    rgba(80, 80, 80, 0.3),
+    rgba(60, 60, 60, 0.1)
+  );
+}
+
+/* 动画定义 */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* 响应式布局 */
+@media (max-width: 1024px) {
+  .main-services {
+    max-width: 500px;
+  }
+  
+  .side-services {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-layout {
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
+  }
+  
+  .main-services, .side-services {
+    width: 100%;
+  }
+  
+  .side-services {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .side-services .button {
+    width: calc(33.33% - 8px);
+    height: 40px;
+    margin: 4px;
+  }
+  
+  .button-info {
+    left: 50% !important;
+    right: auto !important;
+    top: 100% !important;
+    transform: translateX(-50%) !important;
+    margin-top: 10px;
+    z-index: 101;
+  }
 }
 
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: 0.75s;
+@media (max-width: 480px) {
+  .side-services {
+    flex-direction: column;
+  }
+  
+  .side-services .button {
+    width: 100%;
+    margin: 5px 0;
+  }
 }
 
-.logo.tauri:hover {
-    filter: drop-shadow(0 0 2em #24c8db);
+/* 添加tooltip容器样式 */
+#tooltip-container {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+  background: rgba(45, 45, 45, 0.97);
+  border: 1px solid rgba(80, 80, 80, 0.3);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(80, 80, 80, 0.1);
+  border-radius: 12px;
+  padding: 16px 20px;
+  max-width: 320px;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  transform-origin: left center;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.row {
-    display: flex;
-    justify-content: center;
+/* 优化Tooltip箭头样式 */
+.tooltip-content::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: inherit;
+  left: -6px;
+  top: 20px;
+  transform: rotate(45deg);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: -3px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-a {
-    font-weight: 500;
-    color: #646cff;
-    text-decoration: inherit;
+/* 添加tooltip内容样式 */
+.tooltip-content {
+  position: relative;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-a:hover {
-    color: #535bf2;
+/* 添加tooltip动画 */
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-h1 {
-    text-align: center;
+/* 移动端适配优化 */
+@media (max-width: 768px) {
+  #tooltip-container {
+    position: fixed;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 85%;
+    max-width: 300px;
+    background: rgba(28, 32, 38, 0.98);
+    padding: 20px;
+  }
+
+  .tooltip-content::before {
+    display: none;
+  }
+
+  /* 移动端添加遮罩背景 */
+  #tooltip-container::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
 }
 
-input,
-button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    color: #0f0f0f;
-    background-color: #ffffff;
-    transition: border-color 0.25s;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+/* 优化文字排版 */
+.tooltip-content {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  text-align: left;
+  padding: 2px 0;
 }
 
-button {
-    cursor: pointer;
+/* 添加文字选择效果 */
+.tooltip-content::selection {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
 }
 
-button:hover {
-    border-color: #396cd8;
-}
-button:active {
-    border-color: #396cd8;
-    background-color: #e8e8e8;
-}
-
-input,
-button {
-    outline: none;
+/* 添加滚动条样式（当内容过长时） */
+#tooltip-container {
+  max-height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(80, 80, 80, 0.5) transparent;
 }
 
-#greet-input {
-    margin-right: 5px;
+#tooltip-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        color: #f6f6f6;
-        background-color: #2f2f2f;
-    }
+#tooltip-container::-webkit-scrollbar-track {
+  background: rgba(40, 40, 40, 0.3);
+}
 
-    a:hover {
-        color: #24c8db;
-    }
+#tooltip-container::-webkit-scrollbar-thumb {
+  background: rgba(80, 80, 80, 0.5);
+  border-radius: 4px;
+}
 
-    input,
-    button {
-        color: #ffffff;
-        background-color: #0f0f0f98;
-    }
-    button:active {
-        background-color: #0f0f0f69;
-    }
+#tooltip-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(90, 90, 90, 0.6);
+}
+
+/* 添加通知样式 */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 24px;
+  background: rgba(45, 45, 45, 0.97);
+  border: 1px solid rgba(80, 80, 80, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(80, 80, 80, 0.1);
+  color: white;
+  border-radius: 8px;
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 10001;
+}
+
+.notification.success {
+  border-left: 4px solid #4CAF50;
+}
+
+.notification.error {
+  border-left: 4px solid #f44336;
+}
+
+/* 添加动态光效 */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.button-container:hover {
+  background: linear-gradient(
+    45deg,
+    rgba(50, 50, 50, 0.7) 0%,
+    rgba(60, 60, 60, 0.7) 50%,
+    rgba(50, 50, 50, 0.7) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
 }
